@@ -8,8 +8,6 @@ let increment = 100;
 console.log("Turning on servo");
 
 setInterval(() => {
-    
-    
     motor.servoWrite(pulseWidth);
 
     pulseWidth += increment;
