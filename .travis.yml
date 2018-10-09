@@ -5,6 +5,7 @@ node_js:
   - 'lts/*'
 
 env:
+  - CXX=g++-4.8
   - NODE_ENV=CI
 
 cache:
@@ -17,8 +18,6 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
-      - g++-4.8-multilib
-      - gcc-multilib
 
 script:
   - npm run lint
