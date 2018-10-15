@@ -5,7 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "debug": "3.1.0",
-    "if-env": "1.0.4"
+    "if-env": "1.0.4",
+    "johnny-five": "1.0.0",
+    "raspi-io": "latest"
   },
   "devDependencies": {
     "chai": "4.2.0",
