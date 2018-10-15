@@ -5,9 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "debug": "3.1.0",
-    "if-env": "1.0.4",
-    "johnny-five": "1.0.0",
-    "raspi-io": "latest"
+    "if-env": "1.0.4"
   },
   "devDependencies": {
     "chai": "4.2.0",
@@ -17,10 +15,12 @@
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "2.14.0",
     "mocha": "5.2.0",
-    "nyc": "13.1.0"
+    "nyc": "13.0.1"
   },
   "optionalDependencies": {
-    "pigpio": "1.1.4"
+    "pigpio": "1.1.4",
+    "johnny-five": "1.0.0",
+    "raspi-io": "latest"
   },
   "scripts": {
     "coverage": "nyc report --reporter=text-lcov | coveralls",
