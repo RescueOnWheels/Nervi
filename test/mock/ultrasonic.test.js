@@ -14,6 +14,60 @@ module.exports = () => {
     ultrasonic = new Ultrasonic(1, 2);
   });
 
+  describe('setInterval', () => {
+    it('should call `trigger` 10 times in a second if the interval is 100ms.', (done) => {
+      const time = 1000;
+
+      let count = 0;
+      let startTime = 0;
+      ultrasonic.trigger.trigger = () => {
+        count += 1;
+
+        if (count >= 10) {
+          const timeDelta = (Date.now() - startTime);
+          if (timeDelta > time * 0.95 && timeDelta < time * 1.05) {
+            (true).should.equal(true);
+            done();
+          } else {
+            should.fail(`Interval didn't function properly, time taken: ${timeDelta}`);
+            done();
+          }
+
+          ultrasonic.trigger.trigger = () => {};
+        }
+      };
+
+      ultrasonic.setInterval(100);
+      startTime = Date.now();
+    });
+
+    it('should call `trigger` 16 times in a second if the interval is 10ms (changed to 60ms).', (done) => {
+      const time = 1000;
+
+      let count = 0;
+      let startTime = 0;
+      ultrasonic.trigger.trigger = () => {
+        count += 1;
+
+        if (count >= 16) {
+          const timeDelta = (Date.now() - startTime);
+          if (timeDelta > time * 0.95 && timeDelta < time * 1.05) {
+            (true).should.equal(true);
+            done();
+          } else {
+            should.fail(`Interval didn't function properly, time taken: ${timeDelta}`);
+            done();
+          }
+
+          ultrasonic.trigger.trigger = () => {};
+        }
+      };
+
+      ultrasonic.setInterval(10);
+      startTime = Date.now();
+    });
+  });
+
   describe('Expected Errors (constructor)', () => {
     it('should throw an error if there are no parameters', () => {
       try {
