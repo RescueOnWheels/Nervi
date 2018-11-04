@@ -2,7 +2,7 @@
 const chai = require('chai');
 
 /* Test target */
-const Rotary = require('./../../lib/rotary');
+const Rotary = require('./../../');
 
 chai.should();
 
