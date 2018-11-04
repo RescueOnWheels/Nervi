@@ -2,16 +2,15 @@
 const chai = require('chai');
 
 /* Test target */
+const Nervi = require('./../../');
 const Ultrasonic = require('./../../lib/ultrasonic');
 
 const should = chai.should();
 
 module.exports = () => {
-  let ultrasonic;
-
   // Arrange
   beforeEach(() => {
-    ultrasonic = new Ultrasonic(1, 2);
+    Nervi.ultrasonicFront = new Ultrasonic(1, 2);
   });
 
   describe('setInterval', () => {
@@ -20,7 +19,7 @@ module.exports = () => {
 
       let count = 0;
       let startTime = 0;
-      ultrasonic.trigger.trigger = () => {
+      Nervi.ultrasonicFront.trigger.trigger = () => {
         count += 1;
 
         if (count >= 10) {
@@ -33,11 +32,11 @@ module.exports = () => {
             done();
           }
 
-          ultrasonic.trigger.trigger = () => {};
+          Nervi.ultrasonicFront.trigger.trigger = () => {};
         }
       };
 
-      ultrasonic.setInterval(100);
+      Nervi.ultrasonicFront.setInterval(100);
       startTime = Date.now();
     });
 
@@ -46,7 +45,7 @@ module.exports = () => {
 
       let count = 0;
       let startTime = 0;
-      ultrasonic.trigger.trigger = () => {
+      Nervi.ultrasonicFront.trigger.trigger = () => {
         count += 1;
 
         if (count >= 16) {
@@ -59,11 +58,11 @@ module.exports = () => {
             done();
           }
 
-          ultrasonic.trigger.trigger = () => {};
+          Nervi.ultrasonicFront.trigger.trigger = () => {};
         }
       };
 
-      ultrasonic.setInterval(10);
+      Nervi.ultrasonicFront.setInterval(10);
       startTime = Date.now();
     });
   });
@@ -72,7 +71,7 @@ module.exports = () => {
     it('should throw an error if there are no parameters', () => {
       try {
         // Act
-        ultrasonic = new Ultrasonic();
+        Nervi.ultrasonicFront = new Ultrasonic();
 
         // Assert
         should.fail('Expected an error to be thrown!');
@@ -85,7 +84,7 @@ module.exports = () => {
     it('should throw an error if `pinTrigger` is equal to 0.', () => {
       try {
         // Act
-        ultrasonic = new Ultrasonic(0);
+        Nervi.ultrasonicFront = new Ultrasonic(0);
 
         // Assert
         should.fail('Expected an error to be thrown!');
@@ -99,7 +98,7 @@ module.exports = () => {
     it('should throw an error if `pinEcho` is equal to 0.', () => {
       try {
         // Act
-        ultrasonic = new Ultrasonic(1, 0);
+        Nervi.ultrasonicFront = new Ultrasonic(1, 0);
 
         // Assert
         should.fail('Expected an error to be thrown!');
@@ -113,42 +112,42 @@ module.exports = () => {
 
   describe('Test Cases', () => {
     it('should emit the `data` event', (done) => {
-      ultrasonic.on('data', () => {
+      Nervi.ultrasonicFront.on('data', () => {
         done();
       });
 
-      ultrasonic.echo.triggerEvent('alert', 1, Date.now() * 1000);
-      ultrasonic.echo.triggerEvent('alert', 0, Date.now() * 1000);
+      Nervi.ultrasonicFront.echo.triggerEvent('alert', 1, Date.now() * 1000);
+      Nervi.ultrasonicFront.echo.triggerEvent('alert', 0, Date.now() * 1000);
     });
 
     it('should emit the `data` event with value `-1` if the distance is below 0.05m.', (done) => {
-      ultrasonic.on('data', (distance) => {
+      Nervi.ultrasonicFront.on('data', (distance) => {
         distance.should.equal(-1);
         done();
       });
 
-      ultrasonic.echo.triggerEvent('alert', 1, Date.now() * 1000);
-      ultrasonic.echo.triggerEvent('alert', 0, Date.now() * 1000);
+      Nervi.ultrasonicFront.echo.triggerEvent('alert', 1, Date.now() * 1000);
+      Nervi.ultrasonicFront.echo.triggerEvent('alert', 0, Date.now() * 1000);
     });
 
     it('should emit the `data` event with value `-1` if the distance is above 2.55m.', (done) => {
-      ultrasonic.on('data', (distance) => {
+      Nervi.ultrasonicFront.on('data', (distance) => {
         distance.should.equal(-1);
         done();
       });
 
-      ultrasonic.echo.triggerEvent('alert', 1, (Date.now() - 10) * 1000);
-      ultrasonic.echo.triggerEvent('alert', 0, (Date.now() + 10) * 1000);
+      Nervi.ultrasonicFront.echo.triggerEvent('alert', 1, (Date.now() - 10) * 1000);
+      Nervi.ultrasonicFront.echo.triggerEvent('alert', 0, (Date.now() + 10) * 1000);
     });
 
     it('should emit the `data` event with value `2.00` if the diff in time is 11655 microseconds.', (done) => {
-      ultrasonic.on('data', (distance) => {
+      Nervi.ultrasonicFront.on('data', (distance) => {
         distance.should.equal(2.00);
         done();
       });
 
-      ultrasonic.echo.triggerEvent('alert', 1, 0);
-      ultrasonic.echo.triggerEvent('alert', 0, 11655);
+      Nervi.ultrasonicFront.echo.triggerEvent('alert', 1, 0);
+      Nervi.ultrasonicFront.echo.triggerEvent('alert', 0, 11655);
     });
   });
 };
