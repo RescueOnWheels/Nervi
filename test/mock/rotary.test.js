@@ -48,4 +48,38 @@ module.exports = () => {
       Nervi.rightRotary.rotary.triggerEvent('interrupt');
     }
   });
+
+  it('should return the distance covered', () => {
+    // Assert
+    Nervi.rightRotary.distance.should.equal(0);
+  });
+
+  it('should return the distance covered', () => {
+    // Arrange
+    const NUM_ROTATES = 5;
+    const expectedDistance = Math.round(NUM_ROTATES / 20 * (65 / 1000) * Math.PI, 2);
+
+    // Act
+    for (let i = 0; i < NUM_ROTATES; i += 1) {
+      Nervi.rightRotary.onInterrupt();
+    }
+
+    // Assert
+    Math.round(Nervi.rightRotary.distance, 2).should.equal(expectedDistance);
+  });
+
+  it('should return the distance covered and reset counter to zero.', () => {
+    // Arrange
+    const NUM_ROTATES = 10;
+    const expectedDistance = Math.round(NUM_ROTATES / 20 * (65 / 1000) * Math.PI, 2);
+
+    // Act
+    for (let i = 0; i < NUM_ROTATES; i += 1) {
+      Nervi.rightRotary.onInterrupt();
+    }
+
+    // Assert
+    Math.round(Nervi.rightRotary.distance, 2).should.equal(expectedDistance);
+    Math.round(Nervi.rightRotary.distance, 2).should.equal(0);
+  });
 };
