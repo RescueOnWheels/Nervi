@@ -60,7 +60,7 @@ module.exports = () => {
     const expectedDistance = Math.round(NUM_ROTATES / 20 * (65 / 1000) * Math.PI, 2);
 
     // Act
-    for (let i = 0; i < NUM_ROTATES; i++) {
+    for (let i = 0; i < NUM_ROTATES; i += 1) {
       Nervi.rightRotary.onInterrupt();
     }
 
@@ -74,7 +74,7 @@ module.exports = () => {
     const expectedDistance = Math.round(NUM_ROTATES / 20 * (65 / 1000) * Math.PI, 2);
 
     // Act
-    for (let i = 0; i < NUM_ROTATES; i++) {
+    for (let i = 0; i < NUM_ROTATES; i += 1) {
       Nervi.rightRotary.onInterrupt();
     }
 
