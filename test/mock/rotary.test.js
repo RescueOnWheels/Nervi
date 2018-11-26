@@ -13,17 +13,17 @@ module.exports = () => {
     Nervi.rightRotary = new Rotary();
   });
 
-  it('should send its data to the `speed` event.', (done) => {
+  it('should send its data to the `data` event.', (done) => {
     // Assert
-    Nervi.rightRotary.on('speed', () => {
+    Nervi.rightRotary.on('data', () => {
       clearInterval(Nervi.rightRotary.interval);
       done();
     });
   });
 
-  it('should send 0 m/s to the `speed` event, if there were no interrupts.', (done) => {
+  it('should send 0 m/s to the `data` event, if there were no interrupts.', (done) => {
     // Assert
-    Nervi.rightRotary.on('speed', (speed) => {
+    Nervi.rightRotary.on('data', (speed) => {
       clearInterval(Nervi.rightRotary.interval);
 
       speed.should.equal(0);
@@ -31,9 +31,9 @@ module.exports = () => {
     });
   });
 
-  it('should send 0 m/s to the `speed` event, if there were no interrupts.', (done) => {
+  it('should send 0 m/s to the `data` event, if there were no interrupts.', (done) => {
     // Assert
-    Nervi.rightRotary.on('speed', (speed) => {
+    Nervi.rightRotary.on('data', (speed) => {
       clearInterval(Nervi.rightRotary.interval);
 
       const expectedDistance = Math.round((65 / 1000) * Math.PI, 2);
