@@ -5,7 +5,7 @@ const chai = require('chai');
 const Nervi = require('./../../');
 const Compass = require('./../../lib/compass');
 
-chai.should();
+const should = chai.should();
 
 module.exports = () => {
   // Arrange
@@ -34,5 +34,21 @@ module.exports = () => {
     // Assert
     Nervi.compass.degrees.should.be.a('number');
     Nervi.compass.degrees.should.equal(-1);
+  });
+
+  it('enable should set the headingInterval property.', () => {
+    // Act
+    Nervi.compass.enable();
+
+    // Assert
+    Nervi.compass.headingInterval.should.not.equal(null);
+  });
+
+  it('disable should nullify the headingInterval property.', () => {
+    // Act
+    Nervi.compass.disable();
+
+    // Assert
+    should.not.exist(Nervi.compass.headingInterval);
   });
 };

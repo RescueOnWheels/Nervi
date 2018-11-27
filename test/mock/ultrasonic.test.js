@@ -150,4 +150,20 @@ module.exports = () => {
       Nervi.ultrasonicFront.echo.triggerEvent('alert', 0, 11655);
     });
   });
+
+  it('enable should set the headingInterval property.', () => {
+    // Act
+    Nervi.ultrasonicFront.enable();
+
+    // Assert
+    Nervi.ultrasonicFront.triggerInterval.should.not.equal(null);
+  });
+
+  it('disable should nullify the headingInterval property.', () => {
+    // Act
+    Nervi.ultrasonicFront.disable();
+
+    // Assert
+    should.not.exist(Nervi.ultrasonicFront.triggerInterval);
+  });
 };
