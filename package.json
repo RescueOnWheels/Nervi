@@ -4,7 +4,6 @@
   "description": "Nerve systems of the Rover.",
   "main": "index.js",
   "dependencies": {
-    "debug": "3.1.0",
     "if-env": "1.0.4"
   },
   "devDependencies": {
@@ -28,6 +27,7 @@
     "lint": "if-env NODE_ENV=CI && npm run lint: || npm run lint:fix",
     "lint:": "eslint .",
     "lint:fix": "eslint . --fix",
+    "preinstall": "git submodule foreach npm install",
     "test": "if-env npm_config_dev=true && npm run test:dev || if-env npm_config_debug=true && npm run test:debug || npm run test:",
     "test:": "nyc mocha --exit",
     "test:debug": "cross-env DEBUG=RRS:* npm run test:",
