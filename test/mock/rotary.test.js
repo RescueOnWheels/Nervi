@@ -5,7 +5,7 @@ const chai = require('chai');
 const Nervi = require('./../../');
 const Rotary = require('./../../lib/rotary');
 
-chai.should();
+const should = chai.should();
 
 module.exports = () => {
   // Arrange
@@ -81,5 +81,21 @@ module.exports = () => {
     // Assert
     Math.round(Nervi.rightRotary.distance, 2).should.equal(expectedDistance);
     Math.round(Nervi.rightRotary.distance, 2).should.equal(0);
+  });
+
+  it('enable should set the headingInterval property.', () => {
+    // Act
+    Nervi.rightRotary.enable();
+
+    // Assert
+    Nervi.rightRotary.interval.should.not.equal(null);
+  });
+
+  it('disable should nullify the headingInterval property.', () => {
+    // Act
+    Nervi.rightRotary.disable();
+
+    // Assert
+    should.not.exist(Nervi.rightRotary.interval);
   });
 };
