@@ -17,9 +17,7 @@
     "nyc": "13.0.1"
   },
   "optionalDependencies": {
-    "compass-hmc5883l": "1.0.2",
-    "pigpio": "1.2.0",
-    "raspi-io": "9.0.0"
+    "pigpio": "1.2.0"
   },
   "scripts": {
     "coverage": "nyc report --reporter=text-lcov | coveralls",
