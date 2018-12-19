@@ -17,7 +17,7 @@
     "nyc": "13.0.1"
   },
   "optionalDependencies": {
-    "pigpio": "1.2.0"
+    "pigpio": "1.2.1"
   },
   "scripts": {
     "coverage": "nyc report --reporter=text-lcov | coveralls",
